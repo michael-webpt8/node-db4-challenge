@@ -8,6 +8,12 @@ module.exports = {
       filename: './data/recipes.db3',
     },
   },
+  migrations: {
+    directory: './migrations',
+  },
+  seeds: {
+    directory: './seeds',
+  },
 
   pool: {
     afterCreate: (conn, done) => {
