@@ -27,7 +27,16 @@ exports.up = async function(knex) {
     table.primary(['recipe_id', 'ingredient_id']);
   });
 
-  await knex.schema.createTable('recipe_instructions', table => {});
+  await knex.schema.createTable('recipe_instructions', table => {
+    table.increments('id');
+    table.text('instruction').notNullable();
+    table
+      .integer('recipe_id')
+      .notNullable()
+      .unsigned()
+      .references('id')
+      .inTable('recipes');
+  });
 };
 
 exports.down = async function(knex) {
