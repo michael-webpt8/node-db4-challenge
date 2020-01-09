@@ -8,10 +8,10 @@ exports.up = async function(knex) {
     table.increments('id');
     table.string('ingredient', 160).notNullable();
     table.float('quantity').notNullable();
-    table.string('size').notNullable();
+    table.string('size');
   });
 
-  await knex.schema.createTable('recipes_ingreidents', table => {
+  await knex.schema.createTable('recipes_ingredients', table => {
     table
       .integer('recipe_id')
       .unsigned()
