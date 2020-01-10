@@ -35,6 +35,21 @@ router.get('/:id/shoppingList', async (req, res, next) => {
     }
 })
 
+router.get('/:id/instructions', async (req, res, next) => {
+    const id = req.params.id;
+    try {
+        if (id) {
+            const instructions = await dbRecipe.getInstructions(id);
+            res.status(200).json(instructions);
+        } else {
+            res.status(400).json({ message: 'cannot find recipe id for instructions' })
+        }
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+})
+
 
 
 module.exports = router;
