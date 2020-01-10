@@ -7,7 +7,6 @@ exports.up = async function(knex) {
   await knex.schema.createTable('ingredients', table => {
     table.increments('id');
     table.string('ingredient', 160).notNullable();
-    table.float('quantity').notNullable();
   });
 
   await knex.schema.createTable('recipes_ingredients', table => {
@@ -23,6 +22,10 @@ exports.up = async function(knex) {
       .notNullable()
       .references('id')
       .inTable('ingredients');
+    table
+      .float('quantity')
+      .notNullable()
+      .unsigned();
     table.primary(['recipe_id', 'ingredient_id']);
   });
 
