@@ -20,6 +20,5 @@ function getShoppingList(recipe_id) {
 function getInstructions(recipe_id) {
   return db('recipes as r')
     .join('recipe_instructions as ri', 'r.id', 'ri.recipe_id')
-    .where({ recipe_id })
-    .first();
+    .where({ recipe_id });
 }
